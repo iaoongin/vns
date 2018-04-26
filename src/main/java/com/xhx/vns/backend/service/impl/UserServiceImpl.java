@@ -5,7 +5,6 @@ import com.xhx.vns.backend.pojo.User;
 import com.xhx.vns.backend.service.UserService;
 import com.xhx.vns.backend.vo.UserVo;
 import com.xhx.vns.common.util.PaginationRequest;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +19,6 @@ public class UserServiceImpl extends BaseService implements UserService {
 
     @Autowired
     private UserMapper userMapper;
-
-    @Autowired
-    private SqlSessionTemplate sqlSessionTemplate;
 
     @Override
     public List<UserVo> queryAll() {
@@ -48,5 +44,10 @@ public class UserServiceImpl extends BaseService implements UserService {
 
         return sqlSessionTemplate.selectOne("com.xhx.vns.backend.dao.UserMapper.queryCount");
 
+    }
+
+    @Override
+    public int modify(User user) {
+        return userMapper.updateByPrimaryKeySelective(user);
     }
 }

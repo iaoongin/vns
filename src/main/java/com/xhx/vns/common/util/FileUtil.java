@@ -15,8 +15,7 @@ public class FileUtil {
      * classpath绝对路径
      */
 //    public static final String CLASS_PATH = ClassLoader.getSystemResource("").getPath().substring(1);
-    public static final String CLASS_PATH = FileUtil.class.getClassLoader().getResource("/").getPath().substring(1);;
-
+    public static final String CLASS_PATH = FileUtil.class.getClassLoader().getResource("").getPath().substring(1);;
 
     /**
      * 文件临时路径
@@ -30,12 +29,12 @@ public class FileUtil {
     /**
      * silk_v3_decoder.exe 路径
      */
-    public static final String SILK_DECODER = CLASS_PATH + "silk_v3_decoder.exe";
+    public static final String SILK_DECODER = CLASS_PATH + "tools/silk_v3_decoder.exe";
 
     /**
      * ffmpeg.exe 路径
      */
-    public static final String FFMPEG = CLASS_PATH + "ffmpeg.exe";
+    public static final String FFMPEG = CLASS_PATH + "tools/ffmpeg.exe";
 
 
     static {

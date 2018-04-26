@@ -421,4 +421,54 @@
       arg3 = #{arg3,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=BIGINT}
   </update>
+
+  <!--分页查询 start-->
+  <sql id="Map_Pagination_Where_Clause">
+    <where>
+      <if test="searchMap != null ">
+
+        <if test="searchMap.architectureName != null ">
+          AND architecture_name like "%"#{searchMap.architectureName }"%"
+        </if>
+        <if test="searchMap.architectureStatus != null">
+          AND architecture_status like "%"#{searchMap.architectureStatus }"%"
+        </if>
+      </if>
+    </where>
+  </sql>
+
+  <sql id="Map_Pagination_Order_Clause">
+    <if test="orderMap != null">
+
+      <trim prefix="ORDER BY" prefixOverrides="">
+        <if test="orderMap.architectureName != null ">
+          architecture_name ${orderMap.architectureName}
+        </if>
+        <if test="orderMap.architectureStatus != null">
+          architecture_status ${orderMap.architectureStatus}
+        </if>
+      </trim>
+    </if>
+  </sql>
+
+  <sql id="Map_Pagination_Limit_Clause">
+    <if test="sqlStart != null and sqlLimit != null">
+      LIMIT ${sqlStart},${sqlLimit}
+    </if>
+  </sql>
+
+
+  <select id="selectByMapPaginational" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List"/>
+    FROM architecture
+    <include refid="Map_Pagination_Where_Clause"/>
+    <include refid="Map_Pagination_Order_Clause"/>
+    <include refid="Map_Pagination_Limit_Clause"/>
+  </select>
+  <!--分页查询 end-->
+
+  <select id="queryCount" resultType="java.lang.Integer">
+    SELECT COUNT(`ID`) FROM architecture
+  </select>
 </mapper>

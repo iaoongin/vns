@@ -1,6 +1,7 @@
 package com.xhx.vns.common.util;
 
-import org.json.JSONObject;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.*;
@@ -22,26 +23,24 @@ public class SpeechResolveUtil {
     private static final String secretKey = "ec374b106a4f3e4c4f393ae7eb8c9091";
     private static final String cuid = "10776875";
 
-    public static String recognize(String testFileName) {
-        try {
-            getToken();
-            return method1(testFileName);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public static String recognize(String testFileName) throws Exception {
+        getToken();
+        return method1(testFileName);
     }
 
     /**
      * 获取授权
+     *
      * @throws Exception
      */
     private static void getToken() throws Exception {
         String getTokenURL = "https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials" +
                 "&client_id=" + apiKey + "&client_secret=" + secretKey;
         HttpURLConnection conn = (HttpURLConnection) new URL(getTokenURL).openConnection();
-        token = new JSONObject(printResponse(conn)).getString("access_token");
+
+        JSONObject parse = (JSONObject) JSON.parse(printResponse(conn));
+        token = parse.getString("access_token");
+
     }
 
     private static String method1(String testFileName) throws Exception {
@@ -67,7 +66,7 @@ public class SpeechResolveUtil {
 
         // send request
         DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
-        wr.writeBytes(params.toString());
+        wr.writeBytes(params.toJSONString());
         wr.flush();
         wr.close();
 
@@ -88,8 +87,8 @@ public class SpeechResolveUtil {
             response.append('\r');
         }
         rd.close();
-        String json = new JSONObject(response.toString()).toString(4);
-        return new String(json.getBytes(), "utf-8");
+
+        return response.toString();
     }
 
     private static byte[] loadFile(File file) throws IOException {

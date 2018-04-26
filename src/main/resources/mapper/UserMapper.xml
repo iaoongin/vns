@@ -351,6 +351,7 @@
         where ID = #{id,jdbcType=BIGINT}
     </update>
 
+    <!--分页查询 start-->
     <sql id="Map_Pagination_Where_Clause">
         <where>
             <if test="searchMap != null ">
@@ -385,7 +386,7 @@
         </if>
     </sql>
 
-    <!--分页查询-->
+
     <select id="selectByMapPaginational" resultMap="BaseResultMap" parameterType="java.util.Map">
         select
         <include refid="Base_Column_List"/>
@@ -394,9 +395,10 @@
         <include refid="Map_Pagination_Order_Clause"/>
         <include refid="Map_Pagination_Limit_Clause"/>
     </select>
+    <!--分页查询 end-->
 
     <select id="queryCount" resultType="java.lang.Integer">
         SELECT COUNT(`ID`) FROM USER
     </select>
-    
+
 </mapper>

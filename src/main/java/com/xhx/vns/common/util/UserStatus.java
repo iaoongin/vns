@@ -25,6 +25,7 @@ public class UserStatus {
 
             case USER_STATUS_FORBIDDEN:
                 return "封禁";
+
             default:
                 return "未知";
         }

@@ -1,5 +1,6 @@
 package com.xhx.vns.backend.service;
 
+import com.xhx.vns.backend.pojo.User;
 import com.xhx.vns.backend.vo.UserVo;
 import com.xhx.vns.common.util.PaginationRequest;
 
@@ -29,4 +30,11 @@ public interface UserService {
      * @return
      */
     int queryCount();
+
+    /**
+     * 用户信息修改
+     * @param user
+     * @return
+     */
+    int modify(User user);
 }

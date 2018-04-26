@@ -1,10 +1,10 @@
 package com.xhx.vns.backend.controller;
 
+import com.xhx.vns.backend.service.UserService;
 import com.xhx.vns.backend.vo.PaginationVo;
 import com.xhx.vns.backend.vo.UserVo;
 import com.xhx.vns.common.util.PaginationRequest;
 import com.xhx.vns.common.util.R;
-import com.xhx.vns.backend.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,8 +36,10 @@ public class UserController extends BaseController {
     @GetMapping("/pagination")
     public R queryAllPagination(PaginationRequest pr) {
 
-        if(pr == null){
-            return R.error("分页参数为空!");
+        logger.info("开始查询用户信息。");
+        if (pr == null) {
+            logger.error("分页参数为空!");
+            return R.error("参数为空!");
         }
 
         try {
@@ -45,11 +47,11 @@ public class UserController extends BaseController {
             int count = userService.queryCount();
             return R.ok(PaginationVo.format(pr, userVos, count));
         } catch (Exception e) {
-            return R.error(e.getMessage());
+            logger.error(e.getMessage());
+            return R.error("出现异常，请联系管理员！");
         }
 
     }
-
 
 
 }

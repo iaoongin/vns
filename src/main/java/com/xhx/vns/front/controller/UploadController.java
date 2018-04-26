@@ -61,8 +61,13 @@ public class UploadController {
         }
 
         // 音频解析
-        String recognize = SpeechResolveUtil.recognize(pcm);
-
+        String recognize = null;
+        try {
+            recognize = SpeechResolveUtil.recognize(pcm);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return R.error("语音解析出错");
+        }
 
         JSONObject jsonObject = (JSONObject) JSON.parse(recognize);
 

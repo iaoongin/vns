@@ -16,6 +16,8 @@ import java.util.List;
 @Data
 public class UserVo {
 
+    private Long id;
+
     private String userNickname;
 
     private String userWxid;
@@ -27,7 +29,8 @@ public class UserVo {
 
     private String userRole;
 
-    public UserVo(String userNickname, String userWxid, Date userDate, String userStatus, String userRole) {
+    public UserVo(Long id, String userNickname, String userWxid, Date userDate, String userStatus, String userRole) {
+        this.id = id;
         this.userNickname = userNickname;
         this.userWxid = userWxid;
         this.userDate = userDate;
@@ -41,7 +44,7 @@ public class UserVo {
      * @return
      */
     public static UserVo format(User user){
-        return new UserVo(user.getUserNickname(),user.getUserWxid() ,user.getUserDate(),
+        return new UserVo(user.getId(), user.getUserNickname(),user.getUserWxid() ,user.getUserDate(),
                 UserStatus.getUserStatus(user.getUserStatus()) + "", user.getUserRoleId() + "");
     }
 

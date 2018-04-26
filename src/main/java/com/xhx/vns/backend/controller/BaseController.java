@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public abstract class BaseController {
 
-    private Logger logger = LoggerFactory.getLogger(getClass().getName());
+    protected Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     /**
      * 解析所有参数为 "k1=v1&k2=v2$k3=v3" 的形式
