@@ -30,22 +30,10 @@ public abstract class BaseController {
                 result += key + "=" + map.get(key)[0] + "&";
             }
             result = result.substring(0,result.length()-1);
+//            result = URLEncoder.encode(result);
+//            System.out.println(result);
         }
         return result;
     }
 
-    public String changeRequestMapForMapper(HttpServletRequest request){
-
-        String result = "";
-
-        if (request != null){
-
-            Map<String, String[]> map = request.getParameterMap();
-            for ( String key : map.keySet() ){
-                result += key + "=" + map.get(key)[0] + "&";
-            }
-            result = result.substring(0,result.length()-1);
-        }
-        return result;
-    }
 }

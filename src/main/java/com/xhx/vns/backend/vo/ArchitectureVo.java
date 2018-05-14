@@ -3,6 +3,7 @@ package com.xhx.vns.backend.vo;
 import com.xhx.vns.backend.pojo.Architecture;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +15,12 @@ import java.util.List;
 public class ArchitectureVo {
 
     private String architectureName;
-    private Long architectureLongitude;
-    private Long architectureLatitude;
+    private BigDecimal architectureLongitude;
+    private BigDecimal architectureLatitude;
     private Byte architectureStatus;
     private String architectureDesc;
 
-    public ArchitectureVo(String architectureName, Long architectureLongitude, Long architectureLatitude, Byte architectureStatus, String architectureDesc) {
+    public ArchitectureVo(String architectureName, BigDecimal architectureLongitude, BigDecimal architectureLatitude, Byte architectureStatus, String architectureDesc) {
         this.architectureName = architectureName;
         this.architectureLongitude = architectureLongitude;
         this.architectureLatitude = architectureLatitude;
@@ -35,7 +36,7 @@ public class ArchitectureVo {
     public static List<ArchitectureVo> format(List<Architecture> architectures){
 
         List<ArchitectureVo> architectureVos = new ArrayList<>();
-        for (Architecture a: architectures) {
+        for (com.xhx.vns.backend.pojo.Architecture a: architectures) {
             architectureVos.add(format(a));
         }
         return architectureVos;

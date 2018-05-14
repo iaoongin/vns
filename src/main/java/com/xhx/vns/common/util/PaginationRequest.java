@@ -14,7 +14,6 @@ import java.util.Map;
  */
 public class PaginationRequest {
 
-    // 接收参数
     /**
      * 查询关键字map '表属性--关键字'
      */

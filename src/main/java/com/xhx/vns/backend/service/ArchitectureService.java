@@ -1,6 +1,8 @@
 package com.xhx.vns.backend.service;
 
+import com.xhx.vns.backend.pojo.Architecture;
 import com.xhx.vns.backend.vo.ArchitectureVo;
+import com.xhx.vns.backend.vo.MapMarkVo;
 import com.xhx.vns.common.util.PaginationRequest;
 
 import java.util.List;
@@ -24,4 +26,7 @@ public interface ArchitectureService {
      */
     int queryCount();
 
+    int modify(Architecture architecture);
+
+    List<MapMarkVo> queryAll();
 }

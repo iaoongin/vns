@@ -19,7 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/architecture")
-public class ArchitectureController extends BaseController{
+public class ArchitectureController extends BaseController {
 
     @Autowired
     private ArchitectureService architectureService;
@@ -28,7 +28,7 @@ public class ArchitectureController extends BaseController{
     @GetMapping("/pagination")
     public R queryAllPagination(PaginationRequest pr) {
         logger.info("开始查询建筑信息。");
-        if(pr == null){
+        if (pr == null) {
             logger.error("分页参数为空!");
             return R.error("参数为空!");
         }
@@ -39,9 +39,8 @@ public class ArchitectureController extends BaseController{
             return R.ok(PaginationVo.format(pr, architectureVos, count));
         } catch (Exception e) {
             logger.error(e.getMessage());
-            return R.error("出现异常，请联系管理员！");
         }
-
+        return R.error("出现异常，请联系管理员！");
     }
 
 }

@@ -20,30 +20,51 @@ import javax.servlet.http.HttpServletRequest;
 public class LBSAPIController extends BaseController{
 
     /**
-     * 关键词输入提示
+     * 拼接key进行请求及处理返回结果
+     * @param url
+     * @param request
      * @return
      */
-    @GetMapping("/place/suggestion")
-    public Object placeSuggestion(HttpServletRequest request) {
-
+    public Object lbs(String url, HttpServletRequest request){
         try {
-            return JSON.parse(HttpRequestUtil.sendGet(LBSURL.PLACE_SUGGESTION, changeRequestMapForApi(request)));
+            return JSON.parse(HttpRequestUtil.sendGet(url,
+                    changeRequestMapForApi(request) +"&key="+LBSURL.KEY));
         } catch (Exception e) {
-            return R.error(e.getMessage());
+            logger.error(e.getMessage());
+            return R.error("发生异常");
         }
     }
 
     /**
+     * 关键词输入提示
+     * 参数参考：http://lbs.amap.com/api/webservice/guide/api/inputtips
+     * @return
+     *
+     */
+    @GetMapping("/place/suggestion")
+    public Object placeSuggestion(HttpServletRequest request) {
+        return lbs(LBSURL.PLACE_SUGGESTION, request);
+    }
+
+    /**
      * 距离计算
+     * 参数参考： http://lbs.amap.com/api/webservice/guide/api/direction#distance
      * @return
      */
     @GetMapping("/distance")
     public Object distance(HttpServletRequest request){
-        try {
-            return JSON.parse(HttpRequestUtil.sendGet(LBSURL.DISTANCE, changeRequestMapForApi(request)));
-        } catch (Exception e) {
-            return R.error(e.getMessage());
-        }
+        return lbs(LBSURL.DISTANCE, request);
     }
+
+    /**
+     * 逆地理编码
+     * 参数参考： http://lbs.amap.com/api/webservice/guide/api/direction#distance
+     * @return
+     */
+    @GetMapping("/regeo")
+    public Object regeo(HttpServletRequest request){
+        return lbs(LBSURL.REGEO, request);
+    }
+
 
 }

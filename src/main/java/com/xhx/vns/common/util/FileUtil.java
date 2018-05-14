@@ -6,6 +6,7 @@ import java.io.IOException;
 
 /**
  * File相关工具
+ *
  * @author XHX
  * @date 2018/2/2.
  */
@@ -15,7 +16,8 @@ public class FileUtil {
      * classpath绝对路径
      */
 //    public static final String CLASS_PATH = ClassLoader.getSystemResource("").getPath().substring(1);
-    public static final String CLASS_PATH = FileUtil.class.getClassLoader().getResource("").getPath().substring(1);;
+    public static final String CLASS_PATH = FileUtil.class.getClassLoader().getResource("").getPath().substring(1);
+    ;
 
     /**
      * 文件临时路径
@@ -24,7 +26,7 @@ public class FileUtil {
     /**
      * 音频临时路径
      */
-    public static final String VOICE_TEMP_PATH = FILE_TEMP_PATH+"voice/";
+    public static final String VOICE_TEMP_PATH = FILE_TEMP_PATH + "voice/";
 
     /**
      * silk_v3_decoder.exe 路径
@@ -43,29 +45,30 @@ public class FileUtil {
         System.out.println(CLASS_PATH);
 
         File dir1 = new File(FILE_TEMP_PATH);
-        if(!dir1.exists()) {
+        if (!dir1.exists()) {
             dir1.mkdirs();
         }
         File dir2 = new File(VOICE_TEMP_PATH);
-        if(!dir2.exists()) {
+        if (!dir2.exists()) {
             dir2.mkdirs();
         }
 
     }
 
     /**
-     * 删除目录下的文件
+     * 删除目录下的文件，不含递归文件
+     *
      * @param path
      */
-    public static void delete(String path){
+    public static void delete(String path) {
 
         File dir = new File(path);
 
         // 是否为目录
-        if(dir.isDirectory()){
+        if (dir.isDirectory()) {
             String[] list = dir.list();
-            for(String child : list){
-                new File(path+child).deleteOnExit();
+            for (String child : list) {
+                new File(path + "/" + child).deleteOnExit();
             }
         }
 
@@ -74,21 +77,22 @@ public class FileUtil {
 
     /**
      * 达到一定数量时清楚文件
+     *
      * @param no
      */
-    public static void clearTmpWhenNO(int no){
+    public static void clearTmpWhenNO(int no) {
 
-        if(no < 1){
+        if (no < 1) {
             return;
         }
 
         File dir = new File(FILE_TEMP_PATH);
 
         // 是否为目录
-        if(dir.isDirectory()){
+        if (dir.isDirectory()) {
 
             // 是否大于
-            if(dir.list().length > no){
+            if (dir.list().length > no) {
 
                 delete(FILE_TEMP_PATH);
             }
@@ -97,8 +101,8 @@ public class FileUtil {
 
     }
 
-    public static void close(Closeable closeable){
-        if(closeable != null){
+    public static void close(Closeable closeable) {
+        if (closeable != null) {
             try {
                 closeable.close();
             } catch (IOException e) {

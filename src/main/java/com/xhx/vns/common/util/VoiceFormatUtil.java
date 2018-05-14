@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 public class VoiceFormatUtil {
 
     /**
-     * silk to pcm
+     * silk to mp3
      *
      * @param:
      * @return:
@@ -52,8 +52,12 @@ public class VoiceFormatUtil {
         return null;
     }
 
+    /**
+     * MP3 to pcm
+     * @param sourceFile
+     * @return
+     */
     public static String mp32pcm(String sourceFile) {
-
 
         InputStream fis = null;
         InputStreamReader isr = null;
@@ -61,8 +65,6 @@ public class VoiceFormatUtil {
         try {
             String result = sourceFile.substring(0, sourceFile.lastIndexOf('.')) + ".pcm";
             Runtime runtime = Runtime.getRuntime();
-//            String cmd = FileUtil.FFMPEG + " -f s16le -ar 12k -ac 2 -i " + sourceFile + " -f wav -ar 16k -ac 1 " + result;
-//            String cmd = FileUtil.FFMPEG + " -y -f s16le -ar 16000 -ac 1 -i " + sourceFile + " " + result;
             String cmd = FileUtil.FFMPEG + " -y  -i " + sourceFile + " -acodec pcm_s16le -f s16le -ac 1 -ar 16000 " + result;
 
             //
@@ -104,7 +106,6 @@ public class VoiceFormatUtil {
      */
     public static String silk2pcm(String sourceFile) {
         return mp32pcm(silk2mp3(sourceFile));
-
     }
 
     public static void main(String[] args) {

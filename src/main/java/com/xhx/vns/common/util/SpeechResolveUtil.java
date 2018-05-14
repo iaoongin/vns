@@ -14,6 +14,7 @@ import java.net.URL;
  * @author XHX
  * @date 2018/2/3.
  */
+@Deprecated
 public class SpeechResolveUtil {
 
     private static final String serverURL = "http://vop.baidu.com/server_api";

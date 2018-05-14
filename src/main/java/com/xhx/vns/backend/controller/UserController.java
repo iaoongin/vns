@@ -8,10 +8,10 @@ import com.xhx.vns.common.util.R;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -27,7 +27,7 @@ public class UserController extends BaseController {
 
     @ApiOperation(value = "查询所有用户", notes = "无")
     @GetMapping("/all")
-    public R queryAll(HttpServletRequest request) {
+    public R queryAll() {
 
         return R.ok(userService.queryAll());
     }
@@ -53,5 +53,20 @@ public class UserController extends BaseController {
 
     }
 
+    @ApiOperation(value = "用户信息修改")
+    @PutMapping()
+    public R modifyById(UserVo userVo){
+
+        logger.info("开始修改用户信息。");
+        try {
+            int modify = userService.modify(UserVo.format(userVo));
+            if(modify == 1){
+                return R.ok("修改成功",true);
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return R.ok("出现异常，请联系管理员！",false);
+    }
 
 }
