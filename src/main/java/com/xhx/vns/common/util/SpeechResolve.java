@@ -10,4 +10,7 @@ package com.xhx.vns.common.util;
  * @date 2019/9/20 17:29
  */
 public class SpeechResolve {
+    public static String resolve(String pcm) {
+        return pcm;
+    }
 }

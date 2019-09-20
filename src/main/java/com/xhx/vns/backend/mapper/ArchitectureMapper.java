@@ -10,5 +10,5 @@ import com.xhx.vns.backend.pojo.Architecture;
  * @version 1.0.0
  * @date 2019/9/20 18:11
  */
-public interface ArchitechtureMapper extends BaseMapper<Architecture> {
+public interface ArchitectureMapper extends BaseMapper<Architecture> {
 }

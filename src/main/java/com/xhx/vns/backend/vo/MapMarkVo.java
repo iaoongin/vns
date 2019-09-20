@@ -25,7 +25,6 @@ public class MapMarkVo {
     private Integer markHeight;
     private String markInfoContent;
 
-
     public MapMarkVo(Long id, BigDecimal longitude, BigDecimal latitude, String markIconPath, String markLabelContent, String markCalloutContent, Integer markWidth, Integer markHeight, String markInfoContent) {
         this.id = id;
         this.longitude = longitude;
@@ -39,9 +38,9 @@ public class MapMarkVo {
     }
 
     public static MapMarkVo format(Architecture a){
-        return new MapMarkVo(a.getId(), a.getArchitectureLongitude(), a.getArchitectureLatitude(),
-                a.getMarkIconpath(), a.getMarkLabelcontent(), a.getMarkCalloutcontent(), a.getMarkWidth(),
-                a.getMarkHeight(), a.getMarkInfocontent());
+        return new MapMarkVo(a.getId(), a.getLongitude(), a.getLatitude(),
+                a.getMarkIconPath(), a.getMarkLabelContent(), a.getMarkCalloutContent(), a.getMarkWidth(),
+                a.getMarkHeight(), a.getMarkInfoContent());
     }
 
     public static List<MapMarkVo> format(List<Architecture> architectures){

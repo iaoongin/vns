@@ -30,7 +30,7 @@ public class ArchitectureVo {
 
     public static ArchitectureVo format(Architecture architecture){
 
-        return new ArchitectureVo(architecture.getArchitectureName(), architecture.getArchitectureLongitude(), architecture.getArchitectureLatitude(), architecture.getArchitectureStatus(), architecture.getArchitectureDesc());
+        return new ArchitectureVo(architecture.getName(), architecture.getLongitude(), architecture.getLatitude(), architecture.getStatus(), architecture.getDesc());
     }
 
     public static List<ArchitectureVo> format(List<Architecture> architectures){
