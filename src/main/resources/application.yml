@@ -6,7 +6,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://mysql.java.vm.com:3306/vns?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
-    password: QAZwsx123.
+    password: YST-TEST123
     hikari:
       minimum-idle: 5
       connection-test-query: SELECT 1
