@@ -35,7 +35,7 @@ public class R {
     }
 
     public static R ok(Object data) {
-        return ok(null,null,data);
+        return ok(200,"SUCCESS",data);
     }
 
     public static R ok(String msg, Object data){

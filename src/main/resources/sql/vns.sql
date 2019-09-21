@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 192.168.32.129
+ Source Server         : test
  Source Server Type    : MySQL
- Source Server Version : 80017
- Source Host           : 192.168.32.129:3306
+ Source Server Version : 50527
+ Source Host           : 106.52.208.186:3306
  Source Schema         : vns
 
  Target Server Type    : MySQL
- Target Server Version : 80017
+ Target Server Version : 50527
  File Encoding         : 65001
 
- Date: 20/09/2019 21:41:16
+ Date: 21/09/2019 15:06:52
 */
 
 SET NAMES utf8mb4;
@@ -30,18 +30,19 @@ CREATE TABLE `architecture`  (
   `status` int(4) NULL DEFAULT NULL COMMENT '状态',
   `mark_icon_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图标路径',
   `mark_icon_content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图片内容',
-  `mark_callout_content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '点击内容',
+  `mark_callout_content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '点击图标内容',
   `mark_width` int(5) NULL DEFAULT NULL COMMENT '宽度',
   `mark_height` int(5) NULL DEFAULT NULL COMMENT '高度',
-  `mark_info_content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '内容',
-  `mark_label_content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `mark_info_content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '点击底部展示内容',
+  `mark_label_content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '默认图标内容',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of architecture
 -- ----------------------------
-INSERT INTO `architecture` VALUES (1, '驱蚊器', '请问', 115.8755385876, 28.7405983728, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `architecture` VALUES (1, '图书馆', '江理图书馆', 115.8755585876, 28.7403383728, 11, '/static/img/图书馆.png', '图书馆 开放时间8点', '图书馆 开放时间9点', 100, 100, '图书馆 开放时间10点', '图书馆 开放时间12点');
+INSERT INTO `architecture` VALUES (2, '医务室', '江理医务室', 115.8771085876, 28.7397083728, 11, '/static/img/医务室.png', '医务室 开放时间8点', '医务室 开放时间9点', 80, 80, '医务室 开放时间10点', '医务室 开放时间12点');
 
 -- ----------------------------
 -- Table structure for comment
@@ -52,8 +53,8 @@ CREATE TABLE `comment`  (
   `comment_architecture_ID` bigint(22) NOT NULL,
   `comment_author` bigint(22) NOT NULL,
   `comment_target` bigint(22) NULL DEFAULT NULL,
-  `comment_date` timestamp(0) NULL DEFAULT NULL,
-  `comment_date_gmt` timestamp(0) NULL DEFAULT NULL,
+  `comment_date` datetime NULL DEFAULT NULL,
+  `comment_date_gmt` datetime NULL DEFAULT NULL,
   `comment_content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `comment_status` tinyint(4) NOT NULL,
   `comment_likenum` int(11) NULL DEFAULT NULL,
@@ -62,7 +63,7 @@ CREATE TABLE `comment`  (
   `arg2` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `arg3` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for user
@@ -72,14 +73,14 @@ CREATE TABLE `user`  (
   `ID` bigint(22) NOT NULL,
   `user_nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `user_wxid` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `user_date` timestamp(0) NULL DEFAULT NULL,
+  `user_date` datetime NULL DEFAULT NULL,
   `user_status` tinyint(255) NOT NULL,
   `user_role_id` tinyint(22) NOT NULL,
   `arg1` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `arg2` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `arg3` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user

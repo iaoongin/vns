@@ -1,6 +1,7 @@
 package com.xhx.vns.backend.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xhx.vns.backend.pojo.Architecture;
 import com.xhx.vns.backend.service.ArchitectureService;
 import com.xhx.vns.common.util.R;
@@ -23,13 +24,8 @@ public class ArchitectureController extends BaseController {
 
     @ApiOperation(value = "模糊分页排序查询所有建筑", notes = "无")
     @GetMapping("/pagination")
-    public R queryAllPagination(IPage<Architecture> page) {
+    public R queryAllPagination(Page<Architecture> page) {
         logger.info("开始查询建筑信息。");
-        if (page == null) {
-            logger.error("分页参数为空!");
-            return R.error("参数为空!");
-        }
-
         try {
             IPage<Architecture> architectureIPage = architectureService.page(page);
             return R.ok(architectureIPage);
